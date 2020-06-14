@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
+import NavBar from './NavBar';
+import PreSignIn from './PreSignIn';
 
 function App() {
   return (
     <div className="App">
-          Edit <code>src/App.js</code> and save to reload.
+          <NavBar />
+          <PreSignIn />
+          
     </div>
   );
 }
