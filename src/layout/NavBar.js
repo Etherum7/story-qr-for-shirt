@@ -24,7 +24,7 @@ const styles = {
 		display: 'flex-end',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		marginRight:"1rem"
+		marginRight: '1rem'
 	},
 	Pricing: {
 		display: 'flex',
@@ -62,8 +62,7 @@ function NavBar(props) {
 			</div>
 
 			<div className={classes.buttons}>
-				<SignedOutLinks />
-				{/* <SignedInLinks /> */}
+				{props.loggedIn ? <SignedInLinks /> : <SignedOutLinks />}
 			</div>
 		</div>
 	);

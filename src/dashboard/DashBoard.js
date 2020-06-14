@@ -1,13 +1,15 @@
-import React from 'react'
-import NavBar from '../layout/NavBar'
+import React from 'react';
+import NavBar from '../layout/NavBar';
 import SignedOutDashBoard from './SignedOutDashBoard';
+import SignedInDashBoard from './SignedInDashBoard';
 
 function DashBoard() {
-    return (
-        <>
-        <NavBar />
-        <SignedOutDashBoard />
-        </>
-    )
+	const isLoggedIn = false;
+	return (
+		<div>
+			<NavBar loggedIn ={isLoggedIn}/>
+			{isLoggedIn ? <SignedInDashBoard /> : <SignedOutDashBoard />}
+		</div>
+	);
 }
-export default  DashBoard;
+export default DashBoard;
