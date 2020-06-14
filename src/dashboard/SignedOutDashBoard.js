@@ -24,7 +24,7 @@ const styles = {
 		padding: '1.5rem '
 	}
 };
-function PreSignIn(props) {
+function PreDashboard(props) {
 	const {classes} = props;
 	return (
 		<div>
@@ -50,4 +50,4 @@ function PreSignIn(props) {
 	);
 }
 
-export default withStyles(styles)(PreSignIn);
+export default withStyles(styles)(PreDashboard);

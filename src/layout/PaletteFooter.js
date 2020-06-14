@@ -3,6 +3,7 @@ function PaletteFooter() {
     return (
         <div>
             
+            
         </div>
     )
 }

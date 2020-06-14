@@ -1,16 +1,17 @@
 import React from 'react';
-import './App.css';
-import NavBar from './NavBar';
-import PreSignIn from './PreSignIn';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import DashBoard from './dashboard/DashBoard';
 
 function App() {
-  return (
-    <div className="App">
-          <NavBar />
-          <PreSignIn />
-          
-    </div>
-  );
+	return (
+		<BrowserRouter>
+			<div className="App">
+				<Switch>
+					<Route exact path='/' component={DashBoard}></Route>
+				</Switch>
+			</div>
+		</BrowserRouter>
+	);
 }
 
 export default App;
