@@ -10,12 +10,18 @@ function SignedOutLinks() {
 				variant="contained"
 				color="primary"
 				style={{marginRight: '0.5rem'}}>
-				<NavLink to="/" style={{textDecoration:"none", color:"white"}}>LOGIN</NavLink>
+				<NavLink
+					to="/signin"
+					style={{textDecoration: 'none', color: 'white'}}>
+					LOGIN
+				</NavLink>
 			</Button>
-            <Button 
-                variant="contained" 
-                color="secondary">
-				<NavLink to="/" style={{textDecoration:"none", color:"white"}}>SIGN UP</NavLink>
+			<Button variant="contained" color="secondary">
+				<NavLink
+					to="/signup"
+					style={{textDecoration: 'none', color: 'white'}}>
+					SIGN UP
+				</NavLink>
 			</Button>
 		</div>
 	);

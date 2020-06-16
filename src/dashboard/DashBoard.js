@@ -4,10 +4,10 @@ import SignedOutDashBoard from './SignedOutDashBoard';
 import SignedInDashBoard from './SignedInDashBoard';
 
 function DashBoard() {
-	const isLoggedIn = false;
+	const isLoggedIn = true;
 	return (
 		<div>
-			<NavBar loggedIn ={isLoggedIn}/>
+			<NavBar loggedIn={isLoggedIn} />
 			{isLoggedIn ? <SignedInDashBoard /> : <SignedOutDashBoard />}
 		</div>
 	);

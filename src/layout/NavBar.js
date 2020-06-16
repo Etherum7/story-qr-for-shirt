@@ -12,6 +12,11 @@ const styles = {
 		alignItems: 'center',
 		height: '8vh',
 		backgroundColor: '#b5bbbf',
+		width:"100%",
+		top:0,
+		left:0,
+		right:0,
+		
 		flexGrow: 1
 	},
 	logo: {
