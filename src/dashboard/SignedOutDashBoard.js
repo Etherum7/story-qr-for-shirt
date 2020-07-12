@@ -4,6 +4,7 @@ import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import {NavLink} from 'react-router-dom';
 const styles = {
 	PaperDiv: {
 		display: 'flex',
@@ -34,15 +35,29 @@ function PreDashboard(props) {
 						Want To Get Yours ?
 					</Typography>
 					<Box>
-						<Button
-							variant="contained"
-							color="primary"
-							style={{marginRight: '0.5rem'}}>
-							LOGIN
-						</Button>
-						<Button variant="contained" color="secondary">
-							SIGN UP
-						</Button>
+						<NavLink
+							to="/signin"
+							style={{
+								textDecoration: 'none',
+								color: 'white'
+							}}>
+							<Button
+								variant="contained"
+								color="primary"
+								style={{marginRight: '0.5rem'}}>
+								LOGIN
+							</Button>
+						</NavLink>
+						<NavLink
+							to="/signup"
+							style={{
+								textDecoration: 'none',
+								color: 'white'
+							}}>
+							<Button variant="contained" color="secondary">
+								SIGN UP
+							</Button>
+						</NavLink>
 					</Box>
 				</Paper>
 			</div>

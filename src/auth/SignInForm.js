@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+//Database
+import firebase , {db} from '../config/fbconfig';
 const styles = {
 	root: {
 		height: '100vh',
@@ -57,6 +59,38 @@ function SignInForm(props) {
 	] = useState(false);
 	function handleSubmit(e) {
 		e.preventDefault();
+		firebase
+			.auth()
+			.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+			.then(function() {
+				firebase
+					.auth()
+					.signInWithEmailAndPassword(email, password)
+					.then(
+						function() {
+							firebase.auth().onAuthStateChanged(function(user) {
+								if (user) {
+									db
+										.collection('users')
+										.doc(user.uid)
+										.get()
+										.then(function(result) {
+											props.history.push(
+												`/${result.data().username}`
+											);
+										});
+								} else {
+								}
+							});
+						},
+						function(error) {
+							// Handle Errors here.
+							var errorCode = error.code;
+							var errorMessage = error.message;
+							// ...
+						}
+					);
+			});
 	}
 	const handleClickShowPassword = () => {
 		setShowPassword(!showPassword);

@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import DashBoard from './dashboard/DashBoard';
-import SignInForm from './auth/SignInForm';
-import SignUpForm from './auth/SignUpForm';
+import SignInPage from './auth/SignInPage';
+import SignUpPage from './auth/SignUpPage';
 import SocialProfile from './profile/SocialProfile';
 import ProfessionalProfile from './profile/ProfessionalProfile';
 
@@ -11,9 +11,9 @@ function App() {
 		<BrowserRouter>
 			<div className="App">
 				<Switch>
-					<Route exact path="/" component={DashBoard} />
-					<Route exact path="/signin" component={SignInForm} />
-					<Route exact path="/signup" component={SignUpForm} />
+					<Route exact path="/" render={(routeProps) => <DashBoard {...routeProps}/>} />
+					<Route exact path="/signin" render={(routeProps) => <SignInPage {...routeProps} />} />
+					<Route exact path="/signup" render={(routeProps) => <SignUpPage {...routeProps}/>} />
 					<Route
 						exact
 						path="/:username/create/social"

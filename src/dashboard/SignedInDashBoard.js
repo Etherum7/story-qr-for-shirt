@@ -117,7 +117,7 @@ function SignedInDashBoard(props) {
 								/>
 								<CardActions
 									className={classes.buttonContainer}>
-									<Link>
+									<Link to="/123/create/professional">
 										<Button
 											variant="outlined"
 											color="secondary">

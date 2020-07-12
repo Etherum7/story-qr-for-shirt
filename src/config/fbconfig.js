@@ -1,9 +1,8 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-<script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-analytics.js" />;
 
-var firebaseConfig = {
+const firebaseConfig = {
 	apiKey: 'AIzaSyDKrkdNb-fTQ9mLMq_VXd_kZQ-tERUBuvw',
 	authDomain: 'story-qr-for-shirt.firebaseapp.com',
 	databaseURL: 'https://story-qr-for-shirt.firebaseio.com',
@@ -14,5 +13,6 @@ var firebaseConfig = {
 	measurementId: 'G-6769LTJG6Z'
 };
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+export var db = firebase.firestore();
+
 export default firebase;

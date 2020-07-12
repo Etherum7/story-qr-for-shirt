@@ -12,11 +12,11 @@ const styles = {
 		alignItems: 'center',
 		height: '8vh',
 		backgroundColor: '#b5bbbf',
-		width:"100%",
-		top:0,
-		left:0,
-		right:0,
-		
+		width: '100%',
+		top: 0,
+		left: 0,
+		right: 0,
+
 		flexGrow: 1
 	},
 	logo: {
@@ -45,7 +45,9 @@ function NavBar(props) {
 			<div>
 				<div className={classes.logo} style={{marginRight: '0.5rem'}}>
 					<Link to="/">
-						<span role="img">😎</span>
+						<span role="img" aria-labelledby="Logo for company">
+							❤💖
+						</span>
 					</Link>
 				</div>
 				<div className={classes.brandName}>
@@ -67,7 +69,14 @@ function NavBar(props) {
 			</div>
 
 			<div className={classes.buttons}>
-				{props.loggedIn ? <SignedInLinks /> : <SignedOutLinks />}
+				{props.loggedIn ? (
+					<SignedInLinks
+						handleOnLogout={props.handleOnLogout}
+						history={props.history}
+					/>
+				) : (
+					<SignedOutLinks />
+				)}
 			</div>
 		</div>
 	);

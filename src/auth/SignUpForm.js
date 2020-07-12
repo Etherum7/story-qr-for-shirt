@@ -12,6 +12,9 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+//Authentication
+import firebase, {db} from '../config/fbconfig';
+
 const styles = {
 	root: {
 		position: 'relative',
@@ -25,7 +28,7 @@ const styles = {
 		justifyContent: 'center',
 		alignItems: 'center',
 		height: '100%',
-		width: '60%'
+		width: '80%'
 	},
 	form: {
 		display: 'flex',
@@ -38,13 +41,27 @@ const styles = {
 	Paper: {
 		display: 'flex',
 		width: '50%',
-		height: '65%',
+		height: '80%',
 		justifyContent: 'center',
 		alignItems: 'center'
+	},
+	error: {
+		color: 'red',
+		marginLeft: '0.5rem',
+		marginBottom: '1rem'
 	}
 };
 function SignUpForm(props) {
 	const theme = useTheme();
+	const alphaNumeric = RegExp(/^[a-z0-9]+$/i);
+	const [
+		errors,
+		setErrors
+	] = useState({
+		userName: '',
+		ConfirmPassword: '',
+		Password: ''
+	});
 	const [
 		email,
 		setEmail
@@ -69,10 +86,60 @@ function SignUpForm(props) {
 		userName,
 		setUserName
 	] = useState('');
+	const [
+		submitting,
+		setSubmitting
+	] = useState(false);
 
-	function handleSubmit(e) {
-		e.preventDefault();
-	}
+	const handleChange = (event) => {
+		//event.preventDefault();
+		const {name, value} = event.target;
+
+		switch (name) {
+			case 'password':
+				setErrors({
+					userName: errors.userName,
+					Password:
+						value.length < 8
+							? 'Password must be 8 characters long!'
+							: '',
+					ConfirmPassword: errors.ConfirmPassword
+				});
+
+				setPassword(value);
+				break;
+			case 'confirmPassword':
+				setErrors({
+					userName: errors.userName,
+					Password: errors.Password,
+					ConfirmPassword:
+						value !== password ? "Password don't Match" : ''
+				});
+				setConfirmPassword(value);
+				break;
+			case 'userName':
+				setErrors({
+					userName: alphaNumeric.test(value)
+						? ''
+						: 'Username Must contain only alphanumeric charecters',
+					Password: errors.Password,
+					ConfirmPassword: errors.ConfirmPassword
+				});
+
+				setUserName(value);
+				break;
+			default:
+				break;
+		}
+	};
+	const validateForm = (errors) => {
+		let valid = true;
+		Object.values(errors).forEach(
+			// if we have an error string set valid to false
+			(val) => val.length > 0 && (valid = false)
+		);
+		return valid;
+	};
 	const handleClickShowPassword = () => {
 		setShowPassword(!showPassword);
 	};
@@ -86,6 +153,47 @@ function SignUpForm(props) {
 
 	const handleMouseDownConfirmPassword = (event) => {
 		event.preventDefault();
+	};
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		if (validateForm(errors)) {
+			firebase
+				.auth()
+				.createUserWithEmailAndPassword(email, password)
+				.catch(function(error) {
+					// Handle Errors here.
+					var errorCode = error.code;
+					var errorMessage = error.message;
+					// ...
+					if (errorCode === 'auth/weak-password') {
+						alert('The password is too weak.');
+					} else {
+						alert(errorMessage);
+					}
+					console.log(error);
+				});
+			//Error
+			firebase.auth().onAuthStateChanged(function(user) {
+				if (user) {
+					//console.log(user);
+					db
+						.collection('users')
+						.doc(user.uid)
+						.set({username: userName});
+
+					db
+						.collection('users')
+						.doc(user.uid)
+						.get()
+						.then(function(result) {
+							props.history.push(`/${result.data().username}`);
+						});
+				}
+			});
+		} else {
+			setSubmitting(true);
+			console.error('Invalid Form');
+		}
 	};
 
 	const {classes} = props;
@@ -105,6 +213,7 @@ function SignUpForm(props) {
 								<InputLabel htmlFor="email">Email</InputLabel>
 								<OutlinedInput
 									id="email"
+									type="email"
 									value={email}
 									required
 									autoFocus
@@ -116,7 +225,6 @@ function SignUpForm(props) {
 									label="Email"
 								/>
 							</FormControl>
-
 							<FormControl variant="outlined">
 								<InputLabel htmlFor="password">
 									Password
@@ -127,13 +235,12 @@ function SignUpForm(props) {
 									type={showPassword ? 'text' : 'password'}
 									fullWidth
 									required
+									name="password"
 									style={{
 										margin: theme.spacing(1),
 										width: '30ch'
 									}}
-									onChange={(e) =>
-										setPassword(e.target.value)}
-									label="Password"
+									onChange={(e) => handleChange(e)}
 									endAdornment={
 										<InputAdornment position="end">
 											<IconButton
@@ -154,7 +261,13 @@ function SignUpForm(props) {
 										</InputAdornment>
 									}
 								/>
+								{submitting && (
+									<span className={classes.error}>
+										{errors.Password}
+									</span>
+								)}
 							</FormControl>
+
 							<FormControl variant="outlined">
 								<InputLabel htmlFor="confirm-password">
 									Confirm Password
@@ -168,15 +281,15 @@ function SignUpForm(props) {
 											'password'
 										)
 									}
+									name="confirmPassword"
 									value={confirmPassword}
 									required
 									style={{
 										margin: theme.spacing(1),
 										width: '30ch'
 									}}
-									onChange={(e) =>
-										setConfirmPassword(e.target.value)}
-									label="Confirm Password"
+									onChange={(e) => handleChange(e)}
+									//label="Confirm Password"
 									endAdornment={
 										<InputAdornment position="end">
 											<IconButton
@@ -197,6 +310,11 @@ function SignUpForm(props) {
 										</InputAdornment>
 									}
 								/>
+								{submitting && (
+									<span className={classes.error}>
+										{errors.ConfirmPassword}
+									</span>
+								)}
 							</FormControl>
 
 							<FormControl variant="outlined">
@@ -206,16 +324,21 @@ function SignUpForm(props) {
 								<OutlinedInput
 									id="username"
 									value={userName}
+									name="userName"
 									required
 									style={{
 										margin: theme.spacing(1),
 										width: '30ch'
 									}}
-									onChange={(e) =>
-										setUserName(e.target.value)}
+									onChange={(e) => handleChange(e)}
 									label="userName"
 								/>
 							</FormControl>
+							{submitting && (
+								<span className={classes.error}>
+									{errors.userName}
+								</span>
+							)}
 							<Button
 								type="submit"
 								variant="outlined"
