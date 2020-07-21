@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import NavBar from '../layout/NavBar';
+import NavBar from '../components/NavBar';
 import SignedOutDashBoard from './SignedOutDashBoard';
 import SignedInDashBoard from './SignedInDashBoard';
 import firebase from '../config/fbconfig';

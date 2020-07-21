@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useTheme} from '@material-ui/core/styles';
-import NavBar from '../layout/NavBar';
+import NavBar from '../components/NavBar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import FormControl from '@material-ui/core/FormControl';

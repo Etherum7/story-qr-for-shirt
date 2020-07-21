@@ -4,7 +4,7 @@ import {withStyles, useTheme} from '@material-ui/core/styles';
 import {ColorButton1, ColorButton3} from '../styles/ColorButton';
 import SignInForm from './SignInForm';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import googleIcon from '../google-icon.svg';
+import googleIcon from '../components/google-icon.svg';
 import Typography from '@material-ui/core/Typography';
 import styles from '../styles/SigningInUpPageStyles';
 import {Link} from 'react-router-dom';
@@ -18,8 +18,8 @@ function SignInPage(props) {
 		setValue
 	] = useState(0);
 
-	const setValue4 = () => {
-		setValue(4);
+	const setValue1 = () => {
+		setValue(1);
 	};
 	const handleGoogle = () => {
 		firebase
@@ -142,7 +142,7 @@ function SignInPage(props) {
 									borderRadius: '30px',
 									height: '10%'
 								}}
-								onClick={setValue4}>
+								onClick={setValue1}>
 								SIGN IN WITH EMAIL AND PASSWORD
 							</Button>
 
@@ -181,7 +181,7 @@ function SignInPage(props) {
 						</div>
 					</div>
 				</React.Fragment>
-			) : value === 4 ? (
+			) : value === 1 ? (
 				<SignInForm history={props.history} />
 			) : null}
 		</React.Fragment>

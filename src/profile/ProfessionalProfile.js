@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import styles from '../styles/professionalProfileStyles'
 //import axios from 'axios';
-import DragAndDrop from '../FileUploader/DragAndDrop'
-import NavBar from '../layout/NavBar';
+import DragAndDrop from '../resources/DragAndDrop'
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import MobileStepper from '@material-ui/core/MobileStepper';
+import NavBar from '../components/NavBar';
 
 import Typography from '@material-ui/core/Typography';
 import OutlinedInput from '@material-ui/core/OutlinedInput';

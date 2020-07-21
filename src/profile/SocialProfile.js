@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import styles from '../styles/socialProfileStyles'
 //import axios from 'axios';
-import DragAndDrop from '../FileUploader/DragAndDrop'
-import NavBar from '../layout/NavBar';
+import DragAndDrop from '../resources/DragAndDrop'
+import NavBar from '../components/NavBar';
+
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import MobileStepper from '@material-ui/core/MobileStepper';
