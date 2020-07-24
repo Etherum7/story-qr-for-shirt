@@ -1,46 +1,46 @@
-import React, {useState} from 'react';
-import {useTheme} from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { useTheme } from '@material-ui/core/styles';
 import NavBar from '../components/NavBar';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 //Database
-import firebase , {db} from '../config/fbconfig';
+import firebase, { db } from '../config/fbconfig';
 const styles = {
-	root: {
-		height: '100vh',
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center'
+	root    : {
+		height         : '100vh',
+		display        : 'flex',
+		justifyContent : 'center',
+		alignItems     : 'center'
 	},
-	divForm: {
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		height: '100%',
-		width: '50%'
+	divForm : {
+		display        : 'flex',
+		justifyContent : 'center',
+		alignItems     : 'center',
+		height         : '100%',
+		width          : '50%'
 	},
-	form: {
-		display: 'flex',
-		height: '100%',
-		flexDirection: 'column',
-		justifyContent: 'center',
-		alignItems: 'center'
+	form    : {
+		display        : 'flex',
+		height         : '100%',
+		flexDirection  : 'column',
+		justifyContent : 'center',
+		alignItems     : 'center'
 	},
-	Paper: {
-		display: 'flex',
-		width: '50%',
-		height: '55%',
-		justifyContent: 'center',
-		alignItems: 'center'
+	Paper   : {
+		display        : 'flex',
+		width          : '50%',
+		height         : '55%',
+		justifyContent : 'center',
+		alignItems     : 'center'
 	}
 };
 function SignInForm(props) {
@@ -79,14 +79,15 @@ function SignInForm(props) {
 												`/${result.data().username}`
 											);
 										});
-								} else {
+								}
+								else {
 								}
 							});
 						},
 						function(error) {
 							// Handle Errors here.
-							var errorCode = error.code;
-							var errorMessage = error.message;
+							// var errorCode = error.code;
+							// var errorMessage = error.message;
 							// ...
 						}
 					);
@@ -100,7 +101,7 @@ function SignInForm(props) {
 		event.preventDefault();
 	};
 
-	const {classes} = props;
+	const { classes } = props;
 
 	return (
 		<React.Fragment>
@@ -112,8 +113,8 @@ function SignInForm(props) {
 							<Typography
 								variant="h3"
 								style={{
-									marginTop: '-2rem',
-									marginBottom: '1rem'
+									marginTop    : '-2rem',
+									marginBottom : '1rem'
 								}}>
 								Sign In
 							</Typography>
@@ -127,8 +128,8 @@ function SignInForm(props) {
 									required
 									value={email}
 									style={{
-										margin: theme.spacing(1),
-										width: '30ch'
+										margin : theme.spacing(1),
+										width  : '30ch'
 									}}
 									onChange={(e) => setEmail(e.target.value)}
 								/>
@@ -145,8 +146,8 @@ function SignInForm(props) {
 									required
 									fullWidth
 									style={{
-										margin: theme.spacing(1),
-										width: '30ch'
+										margin : theme.spacing(1),
+										width  : '30ch'
 									}}
 									onChange={(e) =>
 										setPassword(e.target.value)}
@@ -177,8 +178,8 @@ function SignInForm(props) {
 								variant="outlined"
 								color="secondary"
 								style={{
-									margin: theme.spacing(1.5),
-									marginTop: '1rem'
+									margin    : theme.spacing(1.5),
+									marginTop : '1rem'
 								}}>
 								Sign In
 							</Button>

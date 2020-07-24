@@ -5,7 +5,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsActiveOutlined';
 import {Link} from 'react-router-dom';
 import Avatari from './Avatari';
-import firebase, {db} from '../config/fbconfig';
+import firebase from '../config/fbconfig';
 
 function SignedInLinks(props) {
 	const {handleOnLogout} = props;

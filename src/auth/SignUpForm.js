@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {useTheme} from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { useTheme } from '@material-ui/core/styles';
 import NavBar from '../components/NavBar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,48 +7,48 @@ import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 //Authentication
-import firebase, {db} from '../config/fbconfig';
+import firebase, { db } from '../config/fbconfig';
 
 const styles = {
-	root: {
-		position: 'relative',
-		height: '100vh',
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center'
+	root    : {
+		position       : 'relative',
+		height         : '100vh',
+		display        : 'flex',
+		justifyContent : 'center',
+		alignItems     : 'center'
 	},
-	divForm: {
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		height: '100%',
-		width: '80%'
+	divForm : {
+		display        : 'flex',
+		justifyContent : 'center',
+		alignItems     : 'center',
+		height         : '100%',
+		width          : '80%'
 	},
-	form: {
-		display: 'flex',
-		height: '100%',
-		width: '80%',
-		flexDirection: 'column',
-		justifyContent: 'center',
-		alignItems: 'center'
+	form    : {
+		display        : 'flex',
+		height         : '100%',
+		width          : '80%',
+		flexDirection  : 'column',
+		justifyContent : 'center',
+		alignItems     : 'center'
 	},
-	Paper: {
-		display: 'flex',
-		width: '50%',
-		height: '80%',
-		justifyContent: 'center',
-		alignItems: 'center'
+	Paper   : {
+		display        : 'flex',
+		width          : '50%',
+		height         : '80%',
+		justifyContent : 'center',
+		alignItems     : 'center'
 	},
-	error: {
-		color: 'red',
-		marginLeft: '0.5rem',
-		marginBottom: '1rem'
+	error   : {
+		color        : 'red',
+		marginLeft   : '0.5rem',
+		marginBottom : '1rem'
 	}
 };
 function SignUpForm(props) {
@@ -58,9 +58,9 @@ function SignUpForm(props) {
 		errors,
 		setErrors
 	] = useState({
-		userName: '',
-		ConfirmPassword: '',
-		Password: ''
+		userName        : '',
+		ConfirmPassword : '',
+		Password        : ''
 	});
 	const [
 		email,
@@ -93,37 +93,37 @@ function SignUpForm(props) {
 
 	const handleChange = (event) => {
 		//event.preventDefault();
-		const {name, value} = event.target;
-
+		const { name, value } = event.target;
+		// Switch Statement is unoptimizable
 		switch (name) {
 			case 'password':
 				setErrors({
-					userName: errors.userName,
-					Password:
+					userName        : errors.userName,
+					Password        :
 						value.length < 8
 							? 'Password must be 8 characters long!'
 							: '',
-					ConfirmPassword: errors.ConfirmPassword
+					ConfirmPassword : errors.ConfirmPassword
 				});
 
 				setPassword(value);
 				break;
 			case 'confirmPassword':
 				setErrors({
-					userName: errors.userName,
-					Password: errors.Password,
-					ConfirmPassword:
+					userName        : errors.userName,
+					Password        : errors.Password,
+					ConfirmPassword :
 						value !== password ? "Password don't Match" : ''
 				});
 				setConfirmPassword(value);
 				break;
 			case 'userName':
 				setErrors({
-					userName: alphaNumeric.test(value)
+					userName        : alphaNumeric.test(value)
 						? ''
 						: 'Username Must contain only alphanumeric charecters',
-					Password: errors.Password,
-					ConfirmPassword: errors.ConfirmPassword
+					Password        : errors.Password,
+					ConfirmPassword : errors.ConfirmPassword
 				});
 
 				setUserName(value);
@@ -167,7 +167,8 @@ function SignUpForm(props) {
 					// ...
 					if (errorCode === 'auth/weak-password') {
 						alert('The password is too weak.');
-					} else {
+					}
+					else {
 						alert(errorMessage);
 					}
 					console.log(error);
@@ -179,7 +180,7 @@ function SignUpForm(props) {
 					db
 						.collection('users')
 						.doc(user.uid)
-						.set({username: userName});
+						.set({ username: userName });
 
 					db
 						.collection('users')
@@ -190,13 +191,14 @@ function SignUpForm(props) {
 						});
 				}
 			});
-		} else {
+		}
+		else {
 			setSubmitting(true);
 			console.error('Invalid Form');
 		}
 	};
 
-	const {classes} = props;
+	const { classes } = props;
 	return (
 		<React.Fragment>
 			<NavBar />
@@ -206,7 +208,7 @@ function SignUpForm(props) {
 						<form className={classes.form} onSubmit={handleSubmit}>
 							<Typography
 								variant="h3"
-								style={{marginTop: '-1rem'}}>
+								style={{ marginTop: '-1rem' }}>
 								Sign Up
 							</Typography>
 							<FormControl variant="outlined">
@@ -218,8 +220,8 @@ function SignUpForm(props) {
 									required
 									autoFocus
 									style={{
-										margin: theme.spacing(1),
-										width: '30ch'
+										margin : theme.spacing(1),
+										width  : '30ch'
 									}}
 									onChange={(e) => setEmail(e.target.value)}
 									label="Email"
@@ -237,8 +239,8 @@ function SignUpForm(props) {
 									required
 									name="password"
 									style={{
-										margin: theme.spacing(1),
-										width: '30ch'
+										margin : theme.spacing(1),
+										width  : '30ch'
 									}}
 									onChange={(e) => handleChange(e)}
 									endAdornment={
@@ -285,8 +287,8 @@ function SignUpForm(props) {
 									value={confirmPassword}
 									required
 									style={{
-										margin: theme.spacing(1),
-										width: '30ch'
+										margin : theme.spacing(1),
+										width  : '30ch'
 									}}
 									onChange={(e) => handleChange(e)}
 									//label="Confirm Password"
@@ -327,8 +329,8 @@ function SignUpForm(props) {
 									name="userName"
 									required
 									style={{
-										margin: theme.spacing(1),
-										width: '30ch'
+										margin : theme.spacing(1),
+										width  : '30ch'
 									}}
 									onChange={(e) => handleChange(e)}
 									label="userName"
@@ -343,7 +345,7 @@ function SignUpForm(props) {
 								type="submit"
 								variant="outlined"
 								color="primary"
-								style={{marginTop: '1rem'}}>
+								style={{ marginTop: '1rem' }}>
 								Sign Up
 							</Button>
 						</form>

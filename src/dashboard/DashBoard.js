@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import SignedOutDashBoard from './SignedOutDashBoard';
 import SignedInDashBoard from './SignedInDashBoard';
@@ -8,8 +8,8 @@ function DashBoard(props) {
 		isLoggedIn,
 		setIsLoggedIn
 	] = useState(false);
-	const handleOnLogout = () => {
-		setIsLoggedIn(false);
+	const handleOnLogout = async () => {
+		await setIsLoggedIn(false);
 		props.history.push('/');
 	};
 	useEffect(() => {
@@ -22,11 +22,7 @@ function DashBoard(props) {
 
 	return (
 		<div>
-			<NavBar
-				loggedIn={isLoggedIn}
-				handleOnLogout={handleOnLogout}
-				history={props.history}
-			/>
+			<NavBar loggedIn={isLoggedIn} handleOnLogout={handleOnLogout} />
 			{isLoggedIn ? <SignedInDashBoard /> : <SignedOutDashBoard />}
 		</div>
 	);
