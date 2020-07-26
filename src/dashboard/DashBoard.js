@@ -23,7 +23,7 @@ function DashBoard(props) {
 	return (
 		<div>
 			<NavBar loggedIn={isLoggedIn} handleOnLogout={handleOnLogout} />
-			{isLoggedIn ? <SignedInDashBoard /> : <SignedOutDashBoard />}
+			{isLoggedIn ? <SignedInDashBoard user={firebase.auth().currentUser}/> : <SignedOutDashBoard />}
 		</div>
 	);
 }

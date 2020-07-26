@@ -1,10 +1,10 @@
 import React from 'react';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -12,65 +12,66 @@ import Button from '@material-ui/core/Button';
 
 import Grid from '@material-ui/core/Grid';
 const styles = {
-	root: {
-		minHeight: '100vh',
-		display: 'flex',
-		flexGrow: 1,
-		alignItems: 'center',
-		backgroundColor: '#dc6827',
-		justifyContent: 'center'
+	root            : {
+		minHeight       : '100vh',
+		display         : 'flex',
+		flexGrow        : 1,
+		alignItems      : 'center',
+		backgroundColor : '#dc6827',
+		justifyContent  : 'center'
 	},
-	Paper: {
-		display: 'flex',
+	Paper           : {
+		display         : 'flex',
 
-		marginTop: '1rem',
-		alignItems: 'center',
-		backgroundColor: '#aaee',
-		justifyContent: 'center',
-		height: '100vh',
-		width: '60%'
+		marginTop       : '1rem',
+		alignItems      : 'center',
+		backgroundColor : '#aaee',
+		justifyContent  : 'center',
+		height          : '100vh',
+		width           : '60%'
 	},
-	question: {
-		marginTop: '3%',
-		boxShadow: 'none'
+	question        : {
+		marginTop : '3%',
+		boxShadow : 'none'
 	},
-	mainGrid: {
-		height: '90%',
-		width: '80%'
+	mainGrid        : {
+		height : '90%',
+		width  : '80%'
 	},
-	cardContainer: {
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center'
+	cardContainer   : {
+		display        : 'flex',
+		justifyContent : 'center',
+		alignItems     : 'center'
 	},
-	card: {
-		maxWidth: 345,
-		height: '80%',
-		position: 'relative',
-		marginTop: '2rem'
+	card            : {
+		maxWidth  : 345,
+		height    : '80%',
+		position  : 'relative',
+		marginTop : '2rem'
 	},
-	media: {
-		height: 140
+	media           : {
+		height : 140
 	},
-	buttonContainer: {
-		diplay: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center'
+	buttonContainer : {
+		diplay         : 'flex',
+		justifyContent : 'center',
+		alignItems     : 'center'
 	}
 };
 
 function SignedInDashBoard(props) {
-	const {classes} = props;
+	const { classes } = props;
+
 	return (
 		<React.Fragment>
 			<Container className={classes.root} maxWidth="lg">
 				<Paper className={classes.Paper}>
 					<Grid container spacing={2} className={classes.mainGrid}>
-						<Grid item xs={12} style={{height: '10%'}}>
+						<Grid item xs={12} style={{ height: '10%' }}>
 							<Paper className={classes.question}>
 								<Typography
 									variant="h3"
-									style={{textAlign: 'center'}}>
+									style={{ textAlign: 'center' }}>
 									What Profile would you like to show on your
 									QR?
 								</Typography>
@@ -86,7 +87,8 @@ function SignedInDashBoard(props) {
 								/>
 								<CardActions
 									className={classes.buttonContainer}>
-									<Link to="/123/create/social">
+									
+									<Link to="123/create/social">
 										<Button
 											variant="outlined"
 											color="primary">

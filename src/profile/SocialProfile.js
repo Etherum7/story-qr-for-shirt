@@ -7,7 +7,6 @@ import NavBar from '../components/NavBar';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import MobileStepper from '@material-ui/core/MobileStepper';
-
 import Typography from '@material-ui/core/Typography';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormControl from '@material-ui/core/FormControl';

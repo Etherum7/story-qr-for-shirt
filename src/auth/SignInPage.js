@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
+import SignInForm from './SignInForm';
 import Button from '@material-ui/core/Button';
 import {withStyles, useTheme} from '@material-ui/core/styles';
 import {ColorButton1, ColorButton3} from '../styles/ColorButton';
-import SignInForm from './SignInForm';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import googleIcon from '../components/google-icon.svg';
 import Typography from '@material-ui/core/Typography';
 import styles from '../styles/SigningInUpPageStyles';
-import {Link} from 'react-router-dom';
 //Database
 import firebase, {db} from '../config/fbconfig';
 function SignInPage(props) {
@@ -26,7 +26,7 @@ function SignInPage(props) {
 			.auth()
 			.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 			.then(function() {
-				var provider = new firebase.auth.GoogleAuthProvider();
+				let provider = new firebase.auth.GoogleAuthProvider();
 				firebase
 					.auth()
 					.signInWithPopup(provider)
